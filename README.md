@@ -28,7 +28,7 @@ Here are example ways to run it using [Docker CLI](#docker-cli), [Docker Compose
 ```sh
 docker run --rm -e NGROK_AUTHTOKEN="$NGROK_AUTHTOKEN" \
   --mount source=MY_SOURCE_VOLUME,target=/data,readonly \
-  ghcr.io/suda/dvsync-server
+  ghcr.io/actus-wirtenberger/dvsync-server
 ```
 
 2. Once the server started, look into the logs and copy the `DVSYNC_TOKEN`
@@ -36,7 +36,7 @@ docker run --rm -e NGROK_AUTHTOKEN="$NGROK_AUTHTOKEN" \
 ```sh
 docker run --rm -e DVSYNC_TOKEN="$DVSYNC_TOKEN" \
   --mount source=MY_TARGET_VOLUME,target=/data \
-  ghcr.io/suda/dvsync-client
+  ghcr.io/actus-wirtenberger/dvsync-client
 ```
 
 #### Using local source/target
@@ -45,7 +45,7 @@ Alternatively, if you want to copy this data to your local machine, you can moun
 ```sh
 docker run --rm -e DVSYNC_TOKEN="$DVSYNC_TOKEN" \
   -v $PWD:/data \
-  ghcr.io/suda/dvsync-client
+  ghcr.io/actus-wirtenberger/dvsync-client
 ```
 This can also be done other way around, when you start the server locally if you need to copy local data into the data center.
 
@@ -56,7 +56,7 @@ This can also be done other way around, when you start the server locally if you
 version: '3.6'
 services:
   dvsync-server:
-    image: 'ghcr.io/suda/dvsync-server'
+    image: 'ghcr.io/actus-wirtenberger/dvsync-server'
     environment:
       NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
     volumes:
@@ -74,7 +74,7 @@ volumes:
 version: '3.6'
 services:
   dvsync-server:
-    image: 'ghcr.io/suda/dvsync-client'
+    image: 'ghcr.io/actus-wirtenberger/dvsync-client'
     environment:
       DVSYNC_TOKEN: ${DVSYNC_TOKEN}
     volumes:
@@ -95,7 +95,7 @@ metadata:
   name: dvsync-server
 spec:
   containers:
-  - image: ghcr.io/suda/dvsync-server
+  - image: ghcr.io/actus-wirtenberger/dvsync-server
     name: dvsync-server
     env:
     - name: NGROK_AUTHTOKEN
@@ -115,7 +115,7 @@ metadata:
   name: dvsync-client
 spec:
   containers:
-  - image: ghcr.io/suda/dvsync-client
+  - image: ghcr.io/actus-wirtenberger/dvsync-client
     name: dvsync-client
     env:
     - name: DVSYNC_TOKEN
